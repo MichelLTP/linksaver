@@ -22,7 +22,7 @@ export function ProductTable({
   const categoryLookup = new Map(categories.map((category) => [category.id, category.name]))
 
   return (
-    <Card className="hidden lg:block">
+    <Card className="hidden overflow-hidden lg:block">
       <CardContent className="p-0">
         <div className="overflow-x-auto">
           <table className="w-full table-fixed text-left">
@@ -42,8 +42,8 @@ export function ProductTable({
                 <th className="px-4 py-4 font-medium">Store</th>
                 <th className="px-4 py-4 font-medium">Category</th>
                 <th className="px-4 py-4 font-medium">Price</th>
-                <th className="px-4 py-4 font-medium">Actions</th>
                 <th className="px-4 py-4 font-medium">Compare</th>
+                <th className="px-4 py-4 font-medium">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -76,6 +76,12 @@ export function ProductTable({
                     </td>
                     <td className="px-4 py-4 align-top whitespace-nowrap font-semibold text-slate-950">{formatCurrency(product.price)}</td>
                     <td className="px-4 py-4 align-top">
+                      <Button className="w-full justify-center whitespace-nowrap" onClick={() => onToggleCompare(product.id)} size="sm" variant={isCompared ? 'secondary' : 'outline'}>
+                        <Scale className="size-4" />
+                        {isCompared ? 'Selected' : 'Compare'}
+                      </Button>
+                    </td>
+                    <td className="px-4 py-4 align-top">
                       <div className="flex gap-1.5">
                         <Button
                           aria-label="Edit product"
@@ -98,12 +104,6 @@ export function ProductTable({
                           <Trash2 className="size-4 text-red-600" />
                         </Button>
                       </div>
-                    </td>
-                    <td className="px-4 py-4 align-top">
-                      <Button className="w-full justify-center whitespace-nowrap" onClick={() => onToggleCompare(product.id)} size="sm" variant={isCompared ? 'secondary' : 'outline'}>
-                        <Scale className="size-4" />
-                        {isCompared ? 'Selected' : 'Compare'}
-                      </Button>
                     </td>
                   </tr>
                 )

@@ -4,7 +4,7 @@ import { ProductTable } from '@/features/products/components/product-table'
 
 describe('ProductTable', () => {
   it('renders the desktop columns in the requested order and removes copy link', () => {
-    render(
+    const { container } = render(
       <ProductTable
         categories={[{ createdAt: '2026-04-19T00:00:00.000Z', id: 'cat-1', name: 'Tech' }]}
         comparedIds={[]}
@@ -28,7 +28,9 @@ describe('ProductTable', () => {
 
     const headers = screen.getAllByRole('columnheader')
     expect(headers).toHaveLength(7)
-    expect(headers.map((header) => header.textContent)).toEqual(['', 'Product', 'Store', 'Category', 'Price', 'Actions', 'Compare'])
+    expect(headers.map((header) => header.textContent)).toEqual(['', 'Product', 'Store', 'Category', 'Price', 'Compare', 'Actions'])
+
+    expect(container.firstElementChild).toHaveClass('overflow-hidden')
 
     const openLink = screen.getByRole('link', { name: 'Open link' })
     expect(openLink).toHaveAttribute('href', 'https://example.com/product')
