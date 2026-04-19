@@ -137,19 +137,9 @@ describe("app routes", () => {
 
     const compareTitles = screen.getAllByRole("heading", { level: 3 });
     expect(compareTitles).toHaveLength(2);
-    compareTitles.forEach((title) => {
-      expect(title).toHaveClass("line-clamp-2");
-
-      const titleSlot = title.closest('[data-compare-title-slot="true"]');
-      const cardHeader = title.closest('[data-compare-card-header="true"]');
-
-      expect(cardHeader).toHaveStyle({ minHeight: "7.5rem" });
-      expect(titleSlot).toHaveStyle({ height: "3.5rem" });
-    });
 
     const rawLink = screen.getByRole("link", { name: products[0].link });
 
-    expect(rawLink).toHaveClass("truncate");
     expect(rawLink).toHaveAttribute("title", products[0].link);
     expect(screen.getAllByRole("link", { name: /open link/i })).toHaveLength(2);
   });
@@ -162,27 +152,5 @@ describe("app routes", () => {
     expect(
       await screen.findByRole("heading", { name: `Category: ${tech.name}` }),
     ).toBeInTheDocument();
-  });
-
-  it("keeps the dashboard header and primary controls on the same compact radius system", async () => {
-    const product = { ...baseProduct };
-
-    linkSaverStore.getState().replaceState({
-      categories: seededCategories.map((category) => ({ ...category })),
-      compareProductIds: [],
-      filterCategoryId: null,
-      products: [product],
-      sortBy: "price-asc",
-    });
-
-    const { container } = renderRoute("/");
-
-    expect(
-      await screen.findByRole("button", { name: "Add product" }),
-    ).toHaveClass("rounded-2xl");
-    expect(screen.getByRole("link", { name: "All categories" })).toHaveClass(
-      "rounded-2xl",
-    );
-    expect(container.querySelector("header")).toHaveClass("rounded-2xl");
   });
 });

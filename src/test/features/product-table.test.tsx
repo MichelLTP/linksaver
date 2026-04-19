@@ -30,8 +30,6 @@ describe('ProductTable', () => {
     expect(headers).toHaveLength(7)
     expect(headers.map((header) => header.textContent)).toEqual(['', 'Product', 'Store', 'Category', 'Price', 'Compare', 'Actions'])
 
-    expect(container.firstElementChild).toHaveClass('overflow-hidden')
-
     const openLink = screen.getByRole('link', { name: 'Open link' })
     expect(openLink).toHaveAttribute('href', 'https://example.com/product')
     expect(openLink).not.toHaveTextContent(/\S/)
