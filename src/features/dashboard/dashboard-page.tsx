@@ -72,7 +72,7 @@ export function DashboardPage() {
         <Card className="overflow-hidden">
           <CardContent className="grid gap-6 p-6 md:grid-cols-[1.2fr_0.8fr] md:items-end">
             <div className="space-y-4">
-              <span className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-sm font-semibold text-cyan-900">
+              <span className="inline-flex rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-900">
                 Smart product watchlist
               </span>
               <div className="space-y-2">
@@ -139,7 +139,6 @@ export function DashboardPage() {
             <ProductTable
               categories={categories}
               comparedIds={compareProductIds}
-              onCopyLink={handleCopyLink}
               onDelete={setPendingDeleteProduct}
               onEdit={(product) => {
                 setEditingProduct(product)

@@ -3,12 +3,11 @@ import { describe, expect, it } from 'vitest'
 import { ProductTable } from '@/features/products/components/product-table'
 
 describe('ProductTable', () => {
-  it('keeps lower-priority desktop actions icon-only', () => {
+  it('renders the desktop columns in the requested order and removes copy link', () => {
     render(
       <ProductTable
         categories={[{ createdAt: '2026-04-19T00:00:00.000Z', id: 'cat-1', name: 'Tech' }]}
         comparedIds={[]}
-        onCopyLink={() => {}}
         onDelete={() => {}}
         onEdit={() => {}}
         onToggleCompare={() => {}}
@@ -27,12 +26,13 @@ describe('ProductTable', () => {
       />,
     )
 
-    expect(screen.getByRole('button', { name: 'Compare' })).toHaveTextContent('Compare')
-    expect(screen.getByRole('link', { name: 'Open link' })).toHaveTextContent('Open link')
+    const headers = screen.getAllByRole('columnheader')
+    expect(headers).toHaveLength(7)
+    expect(headers.map((header) => header.textContent)).toEqual(['', 'Product', 'Store', 'Category', 'Price', 'Actions', 'Compare'])
 
-    const copyLinkButton = screen.getByRole('button', { name: 'Copy link' })
-    expect(copyLinkButton).toHaveAttribute('aria-label', 'Copy link')
-    expect(copyLinkButton).not.toHaveTextContent(/\S/)
+    const openLink = screen.getByRole('link', { name: 'Open link' })
+    expect(openLink).toHaveAttribute('href', 'https://example.com/product')
+    expect(openLink).not.toHaveTextContent(/\S/)
 
     const editProductButton = screen.getByRole('button', { name: 'Edit product' })
     expect(editProductButton).toHaveAttribute('aria-label', 'Edit product')
@@ -41,5 +41,8 @@ describe('ProductTable', () => {
     const deleteProductButton = screen.getByRole('button', { name: 'Delete product' })
     expect(deleteProductButton).toHaveAttribute('aria-label', 'Delete product')
     expect(deleteProductButton).not.toHaveTextContent(/\S/)
+
+    expect(screen.queryByRole('button', { name: 'Copy link' })).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Compare' })).toHaveTextContent('Compare')
   })
 })

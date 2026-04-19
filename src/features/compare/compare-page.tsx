@@ -60,9 +60,9 @@ export function ComparePage() {
               <CardDescription>{product.storeName}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="rounded-2xl bg-cyan-50 p-4">
-                <p className="text-sm text-cyan-800">Price</p>
-                <p className="font-heading text-3xl font-semibold text-cyan-950">{formatCurrency(product.price)}</p>
+              <div className="rounded-2xl bg-blue-50 p-4">
+                <p className="text-sm text-blue-800">Price</p>
+                <p className="font-heading text-3xl font-semibold text-blue-950">{formatCurrency(product.price)}</p>
               </div>
               <Button asChild variant="outline" className="w-full">
                 <a href={product.link} rel="noreferrer" target="_blank">
@@ -82,7 +82,7 @@ export function ComparePage() {
                 <div className="rounded-2xl bg-slate-50 px-4 py-3">
                   <dt className="mb-1 text-slate-500">Link</dt>
                   <dd>
-                    <a className="block truncate font-medium text-cyan-800 underline-offset-4 hover:underline" href={product.link} rel="noreferrer" target="_blank" title={product.link}>
+                    <a className="block truncate font-medium text-blue-800 underline-offset-4 hover:underline" href={product.link} rel="noreferrer" target="_blank" title={product.link}>
                       {product.link}
                     </a>
                   </dd>

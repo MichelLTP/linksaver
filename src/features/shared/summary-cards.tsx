@@ -27,7 +27,7 @@ export function SummaryCards({
         <Card key={label}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0">
             <CardTitle className="text-sm font-medium text-slate-600">{label}</CardTitle>
-            <div className="rounded-2xl bg-cyan-50 p-2 text-cyan-700">
+            <div className="rounded-2xl bg-blue-50 p-2 text-blue-700">
               <Icon className="size-4" />
             </div>
           </CardHeader>

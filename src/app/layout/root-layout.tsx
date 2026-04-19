@@ -15,12 +15,12 @@ export function RootLayout() {
   const compareCount = useLinkSaverStore((state) => state.compareProductIds.length)
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.25),_transparent_35%),linear-gradient(180deg,#ecfeff_0%,#f8fafc_100%)] text-slate-900">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.15),_transparent_32%),radial-gradient(circle_at_top_right,_rgba(30,64,175,0.1),_transparent_28%),linear-gradient(180deg,#ffffff_0%,#f8fbff_100%)] text-slate-900">
       <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-6 sm:px-6 lg:px-8">
-        <header className="sticky top-4 z-20 mb-8 rounded-[2rem] border border-white/70 bg-white/90 px-5 py-4 shadow-[0_20px_50px_-35px_rgba(8,145,178,0.5)] backdrop-blur">
+        <header className="sticky top-4 z-20 mb-8 rounded-[2rem] border border-blue-100 bg-white/95 px-5 py-4 shadow-[0_20px_50px_-35px_rgba(30,64,175,0.28)] backdrop-blur">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex items-start gap-3">
-              <div className="flex size-12 items-center justify-center rounded-2xl bg-cyan-600 text-white shadow-lg shadow-cyan-600/30">
+              <div className="flex size-12 items-center justify-center rounded-2xl bg-blue-700 text-white shadow-lg shadow-blue-700/25">
                 <Tags className="size-6" />
               </div>
               <div>
@@ -35,7 +35,7 @@ export function RootLayout() {
 
             <div className="flex flex-wrap items-center gap-3">
               <Badge>{categoryCount} categories</Badge>
-              <Badge className="border-emerald-200 bg-emerald-50 text-emerald-800">
+              <Badge className="border-blue-200 bg-blue-100 text-blue-900">
                 {compareCount} selected for compare
               </Badge>
             </div>
@@ -47,7 +47,7 @@ export function RootLayout() {
                 className={({ isActive }) =>
                   cn(
                     buttonVariants({ size: 'sm', variant: 'ghost' }),
-                    isActive ? 'bg-cyan-100 text-cyan-950' : 'bg-transparent text-slate-700 hover:bg-cyan-50',
+                    isActive ? 'bg-blue-100 text-blue-950' : 'bg-transparent text-slate-700 hover:bg-blue-50',
                   )
                 }
                 key={to}

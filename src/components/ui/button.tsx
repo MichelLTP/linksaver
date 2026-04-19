@@ -4,12 +4,12 @@ import { cn } from '@/lib/utils'
 
 const variants = {
   default:
-    'bg-[var(--color-primary)] text-white shadow-sm hover:bg-[color-mix(in_srgb,var(--color-primary)_88%,black)]',
+    'bg-[var(--color-primary)] text-white shadow-sm hover:bg-[var(--color-primary-strong)]',
   destructive: 'bg-red-600 text-white hover:bg-red-700',
   outline:
-    'border border-slate-200 bg-white text-slate-700 shadow-sm hover:bg-slate-50 hover:text-slate-900',
-  ghost: 'text-slate-700 hover:bg-cyan-50 hover:text-slate-900',
-  secondary: 'bg-cyan-100 text-cyan-900 hover:bg-cyan-200',
+    'border border-slate-200 bg-white text-slate-700 shadow-sm hover:border-blue-200 hover:bg-blue-50 hover:text-slate-900',
+  ghost: 'text-slate-700 hover:bg-blue-50 hover:text-slate-900',
+  secondary: 'bg-blue-100 text-blue-900 hover:bg-blue-200',
 } as const
 
 const sizes = {
@@ -26,7 +26,7 @@ export function buttonVariants({
   variant?: keyof typeof variants
 }) {
   return cn(
-    'inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-60',
+    'inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-60',
     variants[variant],
     sizes[size],
   )
