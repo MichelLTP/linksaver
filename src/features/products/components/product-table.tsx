@@ -1,4 +1,4 @@
-import { Copy, Pencil, Scale, Trash2 } from 'lucide-react'
+import { Copy, ExternalLink, Pencil, Scale, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import type { Category, Product } from '@/lib/types'
@@ -27,7 +27,14 @@ export function ProductTable({
     <Card className="hidden lg:block">
       <CardContent className="p-0">
         <div className="overflow-x-auto">
-          <table className="min-w-full text-left">
+          <table className="w-full table-fixed text-left">
+            <colgroup>
+              <col className="w-[28%]" />
+              <col className="w-[16%]" />
+              <col className="w-[14%]" />
+              <col className="w-[10%]" />
+              <col className="w-[32%]" />
+            </colgroup>
             <thead className="border-b border-slate-200 bg-slate-50/80 text-sm text-slate-500">
               <tr>
                 <th className="px-6 py-4 font-medium">Product</th>
@@ -42,33 +49,64 @@ export function ProductTable({
                 const isCompared = comparedIds.includes(product.id)
 
                 return (
-                  <tr className="border-b border-slate-100 transition-colors hover:bg-cyan-50/60" key={product.id}>
-                    <td className="px-6 py-4">
-                      <div className="font-medium text-slate-950">{product.name}</div>
-                      <a className="text-sm text-cyan-700 underline-offset-4 hover:underline" href={product.link} rel="noreferrer" target="_blank">
-                        Visit product page
-                      </a>
+                  <tr className="border-b border-slate-100" key={product.id}>
+                    <td className="px-6 py-4 align-top">
+                      <div className="truncate font-medium text-slate-950" title={product.name}>
+                        {product.name}
+                      </div>
                     </td>
-                    <td className="px-6 py-4 text-slate-600">{product.storeName}</td>
-                    <td className="px-6 py-4 text-slate-600">{categoryLookup.get(product.categoryId) ?? 'Unknown'}</td>
-                    <td className="px-6 py-4 font-semibold text-slate-950">{formatCurrency(product.price)}</td>
-                    <td className="px-6 py-4">
-                      <div className="flex flex-wrap gap-2">
-                        <Button onClick={() => onToggleCompare(product.id)} size="sm" variant={isCompared ? 'secondary' : 'outline'}>
+                    <td className="px-6 py-4 align-top">
+                      <div className="truncate text-slate-600" title={product.storeName}>
+                        {product.storeName}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 align-top">
+                      <div className="truncate text-slate-600" title={categoryLookup.get(product.categoryId) ?? 'Unknown'}>
+                        {categoryLookup.get(product.categoryId) ?? 'Unknown'}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 align-top whitespace-nowrap font-semibold text-slate-950">{formatCurrency(product.price)}</td>
+                    <td className="px-6 py-4 align-top">
+                      <div className="flex flex-nowrap gap-1.5 overflow-hidden">
+                        <Button className="shrink-0 whitespace-nowrap" onClick={() => onToggleCompare(product.id)} size="sm" variant={isCompared ? 'secondary' : 'outline'}>
                           <Scale className="size-4" />
                           {isCompared ? 'Selected' : 'Compare'}
                         </Button>
-                        <Button onClick={() => onCopyLink(product.link)} size="sm" variant="outline">
+                        <Button className="shrink-0 whitespace-nowrap" asChild size="sm" variant="outline">
+                          <a aria-label="Open link" href={product.link} rel="noreferrer" target="_blank" title="Open link">
+                            <ExternalLink className="size-4" />
+                            Open link
+                          </a>
+                        </Button>
+                        <Button
+                          aria-label="Copy link"
+                          className="shrink-0"
+                          onClick={() => onCopyLink(product.link)}
+                          size="icon"
+                          title="Copy link"
+                          variant="outline"
+                        >
                           <Copy className="size-4" />
-                          Copy link
                         </Button>
-                        <Button onClick={() => onEdit(product)} size="sm" variant="ghost">
+                        <Button
+                          aria-label="Edit product"
+                          className="shrink-0"
+                          onClick={() => onEdit(product)}
+                          size="icon"
+                          title="Edit product"
+                          variant="ghost"
+                        >
                           <Pencil className="size-4" />
-                          Edit
                         </Button>
-                        <Button onClick={() => onDelete(product)} size="sm" variant="ghost">
+                        <Button
+                          aria-label="Delete product"
+                          className="shrink-0"
+                          onClick={() => onDelete(product)}
+                          size="icon"
+                          title="Delete product"
+                          variant="ghost"
+                        >
                           <Trash2 className="size-4 text-red-600" />
-                          Delete
                         </Button>
                       </div>
                     </td>

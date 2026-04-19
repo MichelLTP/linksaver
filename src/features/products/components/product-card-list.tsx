@@ -1,4 +1,4 @@
-import { Copy, Pencil, Scale, Trash2 } from 'lucide-react'
+import { Copy, ExternalLink, Pencil, Scale, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import type { Category, Product } from '@/lib/types'
@@ -47,13 +47,19 @@ export function ProductCardList({
                   {categoryLookup.get(product.categoryId) ?? 'Unknown'}
                 </span>
                 <a className="rounded-full bg-slate-100 px-3 py-1 text-cyan-800 underline-offset-4 hover:underline" href={product.link} rel="noreferrer" target="_blank">
-                  Open product page
+                  View product page
                 </a>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <Button onClick={() => onToggleCompare(product.id)} size="sm" variant={isCompared ? 'secondary' : 'outline'}>
                   <Scale className="size-4" />
                   {isCompared ? 'Selected' : 'Compare'}
+                </Button>
+                <Button asChild size="sm" variant="outline">
+                  <a href={product.link} rel="noreferrer" target="_blank">
+                    <ExternalLink className="size-4" />
+                    Open link
+                  </a>
                 </Button>
                 <Button onClick={() => onCopyLink(product.link)} size="sm" variant="outline">
                   <Copy className="size-4" />
